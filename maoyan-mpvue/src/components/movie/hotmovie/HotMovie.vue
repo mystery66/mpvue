@@ -1,40 +1,43 @@
 <template>
   <div class="page" >
-    <div class="movie-list" v-if="!movie.item">
-      <a  class="movie-list-item" href="pages/details/main?id=$movie.id"  :data-id="movie.id">
-       <div class="movie-list-left">
-         <div class="movie-list-cover">
-           <img :src="movie.img" >
-           <div class="movie-list-btn">
-             <img src="/static/images/icon-play.png" >
-           </div>
-         </div>
-       </div>
-       <div class="movie-list-right">
-         <div class="movie-list-title">
-           <text class="movie-name">{{movie.name}}</text>
-           <div class="movie-description" v-if="movie.description" v-for="(description,key) in movie.description" :key="key">
-              <text class="movie-dimension" v-if="description.dimension">{{description.dimension}}</text>
-              <text class="movie-imagemaxmum" v-if="description.ImageMaximum">{{description.ImageMaximum}}</text>
-           </div>
-           <text v-if="movie.score" class="movie-people score">{{movie.score}}</text>
-           <text v-if="movie.views" class="movie-people toviews">{{movie.views}}</text>
-             
-          </div>
-          <div class="movie-detail">
-            <text class="movie-type">{{movie.type}}</text>
-            <text class="movie-actor">主演:{{movie.actor}}</text>
-            <text class="movie-playback">{{movie.playback}}</text>
-          </div>
-          <div class="movie-sale">
-            <a href="">
-              <text class="movie-ticket sale" v-if="movie.ticketpurchase">{{movie.ticketpurchase}}</text>
-              <text class="movie-ticket presale" v-if="movie.presale">{{movie.presale}}</text>
-            </a>
+    <div class="hotmovie" v-if="!movie.item">
+       <div class="movie-list"  v-for="(movie,index) in movie" :key="index" >
+        <a  class="movie-list-item" :href=" 'pages/details/main?id='+ movie.id"    :data-id="movie.id">
+        <div class="movie-list-left">
+          <div class="movie-list-cover">
+            <img :src="movie.img" >
+            <div class="movie-list-btn">
+              <img src="/static/images/icon-play.png" >
+            </div>
           </div>
         </div>
-      </a>
+        <div class="movie-list-right">
+          <div class="movie-list-title">
+            <text class="movie-name">{{movie.name}}</text>
+            <div class="movie-description" v-if="movie.description" v-for="(description,key) in movie.description" :key="key">
+                <text class="movie-dimension" v-if="description.dimension">{{description.dimension}}</text>
+                <text class="movie-imagemaxmum" v-if="description.ImageMaximum">{{description.ImageMaximum}}</text>
+            </div>
+            <text v-if="movie.score" class="movie-people score">{{movie.score}}</text>
+            <text v-if="movie.views" class="movie-people toviews">{{movie.views}}</text>
+              
+            </div>
+            <div class="movie-detail">
+              <text class="movie-type">{{movie.type}}</text>
+              <text class="movie-actor">主演:{{movie.actor}}</text>
+              <text class="movie-playback">{{movie.playback}}</text>
+            </div>
+            <div class="movie-sale">
+              
+                <text class="movie-ticket sale" v-if="movie.ticketpurchase">{{movie.ticketpurchase}}</text>
+                <text class="movie-ticket presale" v-if="movie.presale">{{movie.presale}}</text>
+              
+            </div>
+          </div>
+        </a>
     </div>
+    </div>
+   
     <div class="willshow" v-if="movie.item">
       <div class="movie-playtime" v-if="movie.date">{{movie.date}}</div>
       <div class="movie-list" v-for="(movie,index) in movie.item" :key="index" >
@@ -63,10 +66,10 @@
             <text class="movie-playback">{{movie.playback}}</text>
           </div>
           <div class="movie-sale">
-            <a href="">
+            
               <text class="movie-ticket sale" v-if="movie.ticketpurchase">{{movie.ticketpurchase}}</text>
               <text class="movie-ticket presale" v-if="movie.presale">{{movie.presale}}</text>
-            </a>
+            
           </div>
           <div class="wantsee" v-if="movie.wantsee" @cilck="selected">
            <div class="wantsee-btn" v-if="!selected">
@@ -100,7 +103,7 @@ export default {
   }
 }
 </script>
-<style lang="stylus" scope>
+<style lang="stylus" scoped>
 .movie-list 
   background #ffffff
   box-sizing border-box
@@ -109,7 +112,8 @@ export default {
   
   a 
     width 100%
-    padding 25rpx
+    padding 25rpx   
+    
 
 .movie-list-cover
   float left
@@ -185,13 +189,14 @@ export default {
   // position relative
   color #ffffff
   position absolute
-  right -18rpx
-  top  70rpx
+  right 0rpx
+  top  90rpx
   font-size 27rpx
   .movie-ticket  
     border-radius 5rpx
-    padding 10rpx 20rpx
+    padding 15rpx 20rpx
   .movie-ticket.sale
+    
     background-color #ef4238
   .movie-ticket.presale 
     background-color #52b0eb

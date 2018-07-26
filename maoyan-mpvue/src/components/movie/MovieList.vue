@@ -13,7 +13,7 @@
        <div class="movie-list-right">
          <div class="movie-list-title">
            <text class="movie-name">{{movie.name}}</text>
-            <div class="movie-description" >
+            <div class="movie-description">
             <text class="movie-dimension" v-if="movie.dimension">{{movie.dimension}}</text>
             <text class="movie-imagemaxmum" v-if="movie.ImageMaximum">{{movie.ImageMaximum}}</text>
            </div>

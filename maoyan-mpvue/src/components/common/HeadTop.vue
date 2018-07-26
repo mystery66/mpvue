@@ -19,17 +19,18 @@
     </div>
     <div v-if="navigationbar" class="tab-panel">
       <div class="tab-content" :hidden="currTab != 0">
-        <movie-list :movies="movies"></movie-list>
+        <hot-movie :movie="movies"></hot-movie>
       </div>
       <div class="tab-content" :hidden="currTab != 1">
-        <movie-list :willshow="willshow"></movie-list>
+        <will-show :willshow="willshow"></will-show>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import MovieList from '@/components/movie/MovieList'
+import HotMovie from '@/components/movie/hotmovie/HotMovie'
+import WillShow from '@/components/movie/willshow/WillShow'
 export default {
   props:['navigationbar','movies','willshow'],
   data () {
@@ -38,7 +39,8 @@ export default {
     }
   },
   components: {
-    MovieList
+   'hot-movie': HotMovie,
+   'will-show': WillShow
   },
   methods:{
     selected(index) {
