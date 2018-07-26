@@ -1,6 +1,6 @@
 <template>
   <div class="movie">
-    <head-top :navigationbar="item" :movies="movies">
+    <head-top :navigationbar="item" :movies="movies" :willshow="willshow">
     </head-top>
   </div>
 </template>
@@ -18,7 +18,7 @@ export default {
     }
   },
   components: {
-    HeadTop
+   'head-top': HeadTop
     
   },
   async created () {
@@ -38,17 +38,18 @@ export default {
     // })
     let fly =new Fly;
     fly.get('https://www.easy-mock.com/mock/5b3d8905b5c00d5315cf37e9/maoyan/maoyan#!method=get')
-  .then(function (response) {
-    console.log(response);
+  .then((res)=> {
+    console.log(res);
     this.movies = res.data.data.movies;
     this.willshow = res.data.data.willshow;
+    wx.hideLoading()
   })
-  .catch(function (error) {
+  .catch( (error)=> {
     console.log(error);
   });
-    if (this.movies.length) {
-       wx.hideLoading()
-    }
+  
+      
+    
   }
 }
 </script>
