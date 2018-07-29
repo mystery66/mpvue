@@ -2,7 +2,9 @@
   <div class="willshow">
     <div class="scrollview-area">
       <div class="popular-recently">近期最受欢迎</div>
-      <!-- <scroll-view :scrollview="willshow.scrollview"></scroll-view> -->
+      <scroll :willshow="willshow">
+         
+      </scroll>
     </div>
     <div class="content">
       <hot-movie v-for="(showlist,index) in willshow.showlist" :key="index" :movie="showlist"></hot-movie>
@@ -12,12 +14,12 @@
 </template>
 
 <script>
-// import ScrollView from '@/components/movie/ScrollView'
+import ScrollView from '@/components/common/ScrollView'
 import HotMovie from '@/components/movie/hotmovie/HotMovie'
 export default {
   props:['willshow'],
   components: {
-    // ScrollView,
+    'scroll':ScrollView,
     'hot-movie': HotMovie
   }
 }
@@ -34,6 +36,10 @@ export default {
     padding-left 30rpx
     font-size 28rpx
     line-height 75rpx
+
+.scroll-img
+  height 60rpx
+  width 40rpx    
 .content
   margin-top 30rpx  
   border-top 1px solid #e6e6e6
