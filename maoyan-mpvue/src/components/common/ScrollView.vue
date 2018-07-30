@@ -9,7 +9,7 @@
           <div class="scroll-movie date">{{item.date}}</div>
         </a>
         <div class="icon-wish" @click="wish(item.id)">
-          <img class="icon-wish unseleted" src="/static/images/icon-wish.png" v-if="!selected">
+          <img class="icon-wish unseleted" src="/static/images/icon-wish.png" v-if="!item.selected">
           <img class="icon-wish seleted" src="/static/images/icon-wish-selected.png" v-else>
         </div>
         
@@ -28,21 +28,28 @@ export default {
   },
   methods: {
     wish (index) {
-      console.log(index)
-      this.selected = !this.selected
-      if(this.selected) {
-         wx.showToast({
-          title: '已标记想看',
-          icon: 'success',
-          duration: 1000
-    })
-      } else {
-       wx.showToast({
-          title: '已取消想看',
-          icon: 'success',
-          duration: 1000
-    }) 
+      let arr = this.willshow.scrollview;
+      // console.log(index)
+      for(let i =0; i < arr.length; i++) {
+         if (index == arr[i].id) {
+           arr[i].selected = !arr[i].selected;
+           if(arr[i].selected) {
+            wx.showToast({
+              title: '已标记想看',
+              icon: 'success',
+              duration: 1000
+            })
+          } else {
+            wx.showToast({
+              title: '已取消想看',
+              icon: 'success',
+              duration: 1000
+            }) 
+          }
+        }
       }
+      
+      
     }
   }
 }
@@ -56,7 +63,6 @@ export default {
   position relative
   margin-left 25rpx
   margin-bottom 30rpx
-
   display inline-block
   
   .scroll-movie-img
