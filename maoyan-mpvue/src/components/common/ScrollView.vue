@@ -5,7 +5,7 @@
         <a href="">
           <img class="scroll-movie-img" :src="item.image"/>
           <div class="scroll-movie name">{{item.moviename}}</div>
-          <div class="scroll-movie wantsee">{{item.wantsee}}</div>
+          <div class="scroll-movie wantsee">{{item.views}}人想看</div>
           <div class="scroll-movie date">{{item.date}}</div>
         </a>
         <div class="icon-wish" @click="wish(item.id)">
@@ -23,33 +23,12 @@ export default {
   props:['willshow'],
   data () {
     return {
-      selected: false
+      // selected: false
     }
   },
   methods: {
     wish (index) {
-      let arr = this.willshow.scrollview;
-      // console.log(index)
-      for(let i =0; i < arr.length; i++) {
-         if (index == arr[i].id) {
-           arr[i].selected = !arr[i].selected;
-           if(arr[i].selected) {
-            wx.showToast({
-              title: '已标记想看',
-              icon: 'success',
-              duration: 1000
-            })
-          } else {
-            wx.showToast({
-              title: '已取消想看',
-              icon: 'success',
-              duration: 1000
-            }) 
-          }
-        }
-      }
-      
-      
+      this.$emit('choose', index);
     }
   }
 }
