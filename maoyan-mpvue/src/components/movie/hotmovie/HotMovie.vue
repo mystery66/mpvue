@@ -2,7 +2,7 @@
   <div class="page" >
     <div class="hotmovie" v-if="!movie.item">
        <div class="movie-list"  v-for="(movie,index) in movie" :key="index" >
-        <a  class="movie-list-item" :href=" 'pages/details/main?id='+ movie.id"    :data-id="movie.id">
+        <a  class="movie-list-item" :href=" '/pages/details/main?id='+ movie.id"    :data-id="movie.id">
           <div class="movie-list-left">
             <div class="movie-list-cover">
               <img :src="movie.img" >
